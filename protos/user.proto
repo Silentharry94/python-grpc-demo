@@ -1,0 +1,70 @@
+syntax="proto3";
+
+package user_service;
+
+service UserRpcService {
+  rpc registerUser(registerUserRequest) returns (registerUserResponse) {}
+  rpc userLogin(userLoginRequest) returns (userLoginResponse) {}
+  rpc userProfile(userProfileRequest) returns (userProfileResponse) {}
+}
+
+message DemoUserData {
+  string uid = 1;
+  string mobile = 2;
+  string company = 3;
+  int32 status = 4;
+  int32 role_id = 5;
+  string device = 6;
+  string username = 7;
+  string password = 8;
+  string last_login_ip = 9;
+  int32 gender = 10;
+  string avatar = 11;
+  string user_level = 17;
+  string phone = 18;
+  string born = 19;
+  string identity = 20;
+  string qq_no = 21;
+  string wechat = 22;
+  string email = 24;
+  string registration_time = 29;
+  string last_login_time = 30;
+  int32 id = 31;
+}
+
+message registerUserRequest {
+  string mobile = 1;
+  string password = 2;
+  string username = 3;
+  string company = 4;
+}
+
+message registerUserResponse {
+  int32 code = 1;
+  string msg = 2;
+  string time = 4;
+  DemoUserData data = 3;
+}
+
+message userLoginRequest {
+  string mobile = 1;
+  string password = 2;
+}
+
+message userLoginResponse {
+  int32 code = 1;
+  string msg = 2;
+  string time = 4;
+  DemoUserData data = 3;
+}
+
+message userProfileRequest {
+  string uid = 1;
+}
+
+message userProfileResponse {
+  int32 code = 1;
+  string msg = 2;
+  string time = 4;
+  DemoUserData data = 3;
+}

@@ -1,0 +1,62 @@
+syntax="proto3";
+
+package pay_service;
+
+service PayRpcService {
+  rpc wxUnified(wxUnifiedRequest) returns (wxUnifiedResponse) {}
+  rpc registerUnified(registerUnifiedRequest) returns(registerUnifiedResponse) {}
+}
+
+message wxUnifiedReturnData {
+  string appid = 1;
+  string mch_id = 2;
+  string prepay_id = 3;
+  string package = 4;
+  string nonce_str = 5;
+  int32 timestamp = 6;
+  string sign = 7;
+  string img_url = 8;
+  string trade_type = 9;
+}
+
+message registerUnifiedReturnData {
+  int32 status = 1;
+  string puid = 2;
+  string nonce_str = 3;
+  string secret = 4;
+  string mch_id = 5;
+  string appid = 6;
+  int32 expire_time = 7;
+  string channel = 8;
+}
+
+message wxUnifiedRequest {
+  string puid = 1;
+  int64 amount = 3;
+  string notify_url = 4;
+  string body = 5;
+  string attach = 6;
+  string pay_type = 7;
+}
+
+message wxUnifiedResponse {
+  int32 code = 1;
+  string msg = 2;
+  string time = 4;
+  wxUnifiedReturnData data = 3;
+}
+
+message registerUnifiedRequest {
+  string channel = 1;
+  string appid = 2;
+  string mch_id = 3;
+  string secret = 4;
+  string nonce_str = 5;
+}
+
+message registerUnifiedResponse {
+  int32 code = 1;
+  string msg = 2;
+  string time = 4;
+  registerUnifiedReturnData data = 3;
+}
